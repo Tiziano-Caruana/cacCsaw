@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attenzione ai QR Code!</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Emilys+Candy&display=swap" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        body {
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+
+        .emilys-candy-regular {
+            font-family: "Emilys Candy", serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+
+        .tenor-gif-embed {
+            display: block;
+            margin: 0 auto;
+            width: 50%;
+            max-width: 600px;
+            height: auto;
+        }
+
+        .counter-container {
+            text-align: center;
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff0f5;
+            border-radius: 15px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .counter {
+            font-size: 3.5em;
+            color: #ff4786;
+            font-weight: bold;
+            text-shadow: 2px 2px #ff8fab;
+            animation: fade-in-out 0.5s ease forwards;
+            padding: 10px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            display: inline-block;
+        }
+
+        .gif-container img {
+            width: 80px;
+            position: absolute;
+        }
+
+        .gif1 { top: -40px; left: -40px; transform: rotate(-15deg); }
+        .gif2 { top: -30px; right: -40px; transform: rotate(20deg); }
+        .gif3 { bottom: -50px; left: 0; transform: rotate(-10deg); }
+        .gif4 { bottom: -50px; right: 0; transform: rotate(15deg); }
+
+        @keyframes fade-in-out {
+            0% { opacity: 0; transform: scale(0.9); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        .info-section {
+            padding: 40px;
+            background-color: #f7f9fa;
+            color: #333;
+            text-align: center;
+            margin-top: 30px;
+            border-top: 2px solid #ff8fab;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        h1, h2 {
+            color: #ff8fab;
+        }
+        
+        p {
+            font-family: Arial, sans-serif;
+        }
+    </style>
+</head>
+<body>
+
+<div class="tenor-gif-embed" data-postid="17781895581304383421" data-share-method="host" data-aspect-ratio="1.33333" data-width="100%"><a href="https://tenor.com/view/omedetou-congratulations-evangelion-shinji-chair-gif-17781895581304383421">Omedetou Congratulations GIF</a>from <a href="https://tenor.com/search/omedetou-gifs">Omedetou GIFs</a></div> 
+<script type="text/javascript" async src="https://tenor.com/embed.js"></script>
+
+<div class="container">
+    <div class="counter-container">
+        <h1 class="emilys-candy-regular">Potenziali vittime:</h1>
+        
+        <div class="counter emilys-candy-regular" id="visit-counter">{{ count }}</div>
+        
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/jAe22Ec5iICCk/giphy.gif" class="gif1" alt="Sleeping on keyboard">
+            <img src="https://media.giphy.com/media/uaJLuMokII24w/giphy.gif" class="gif2" alt="One Piece laugh meme">
+            <img src="https://media.giphy.com/media/1xo9EaeRENVbs6jn0a/giphy.gif" class="gif3" alt="Mad Manolas">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWhtb3p3bm9rcnAxdWlnMXB0MDJvbmxrYXRodHcwdGxobDJ3dHQzcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11mwI67GLeMvgA/giphy.gif" class="gif4" alt="El risitas">
+        </div>
+    </div>
+
+    <div class="container info-section mt-5">
+
+        <div class="border-hero p-4 mb-4" style="border: 2px solid #ff8fab; border-radius: 10px;">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-1">
+                    <h2 class="emilys-candy-regular">Evita gli attacchi</h2>
+                    <p>QR code scannerizzati in pubblico e ricevuti via mail sono potenzialmente pericolosi. Controlla sempre "dove portano" prima di accedere alla pagina! Potrebbe venire installato un malware sul tuo dispositivo, o ti possono venire chiesti dati sensibili da attaccanti malintenzionati.</p>
+                </div>
+                <div class="col-md-6 order-md-2">
+                    <img src="static/QR_public_bad.png" class="img-fluid rounded" alt="Icona QR rischio">
+                </div>
+            </div>
+        </div>
+
+        <div class="border-hero p-4 mb-4" style="border: 2px solid #ff8fab; border-radius: 10px;">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2 emilys-candy-regular">
+                    <h2>Aiuto dove sono finitpgfuibchf 😭😭😭</h2>
+                    <p>Gli attacchi che usano QR raddoppiano ogni pochi mesi, per questo abbiamo deciso questo tema nella nostra campagna anonima di sensibilizzazione.</p>
+                </div>
+                <div class="col-md-6 order-md-1">
+                    <img src="static/thumbs_up.png" class="img-fluid rounded" alt="Icona protezione QR">
+                </div>
+            </div>
+        </div>
+
+        <div class="border-hero p-4 mb-4" style="border: 2px solid #ff8fab; border-radius: 10px;">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-1 emilys-candy-regular">
+                    <h2>Per saperne di più:</h2>
+                    <p>Difendersi è facile, <a href="https://www.cisa.gov/news-events/news/4-things-you-can-do-keep-yourself-cyber-safe">clicca qui</a> per visualizzare i consigli dell'agenzia statunitense per la CyberSecurity. Ricorda sempre che una ricerca su internet può aiutarti!</p>
+                </div>
+                <div class="col-md-6 order-md-2">
+                    <img src="static/spread_information.png" class="img-fluid rounded" alt="Icona azioni post-scan">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
