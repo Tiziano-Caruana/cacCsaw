@@ -77,11 +77,6 @@ def index():
 
         conn.close()
     else:
-        if not website_visited:
-            increment_global_counter()
-            expires = datetime.datetime.now() + datetime.timedelta(days=20)
-            response.set_cookie(f"visited", "yes", expires=expires)
-            
         cursor.execute("SELECT count FROM global_count WHERE id = 1")
         global_count = cursor.fetchone()[0]
 
@@ -90,6 +85,11 @@ def index():
             response = make_response(render_template("index.html", global_count=global_count, qr_count=qr_count))
         else:
             response = make_response(render_template("index.html", global_count=global_count, qr_count=0))
+
+        if not website_visited:
+            increment_global_counter()
+            expires = datetime.datetime.now() + datetime.timedelta(days=20)
+            response.set_cookie(f"visited", "yes", expires=expires)
 
         expires = datetime.datetime.now() + datetime.timedelta(days=20)
         response.set_cookie(f"visited_{qr_id}", "yes", expires=expires)
@@ -100,4 +100,4 @@ def index():
 
 if __name__ == "__main__":
     init_db()
-    app.run(debug=False, port=5000)
+    app.run(debug=True, port=5000)
