@@ -100,12 +100,12 @@ def index():
 
         conn.close()
     else:
-        global_count = increment_global_counter() if not website_visited else cursor.execute("SELECT count FROM global_count WHERE id = 1").fetchone()[0]
-
         if qr_id and qr_id != "":
+            global_count = increment_global_counter() if not website_visited else cursor.execute("SELECT count FROM global_count WHERE id = 1").fetchone()[0]
             qr_count = increment_qr_counter(qr_id)
             response = make_response(render_template("index.html", global_count=global_count, qr_count=qr_count))
         else:
+            global_count = cursor.execute("SELECT count FROM global_count WHERE id = 1").fetchone()[0]
             qr_count = 0
             response = make_response(render_template("index.html", global_count=global_count, qr_count=qr_count))
 
