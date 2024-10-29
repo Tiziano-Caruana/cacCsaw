@@ -59,6 +59,7 @@ def index():
     conn = sqlite3.connect(DB_PATH, timeout=5)
     cursor = conn.cursor()
     qr_id = request.args.get("papere")
+    website_visited = request.cookies.get(f"visited")
     visited = request.cookies.get(f"visited_{qr_id}")
     
     if visited:
@@ -73,7 +74,9 @@ def index():
 
         conn.close()
     else:
-        global_count = increment_global_counter()
+        if not website_visited:
+            global_count = increment_global_counter()
+            response.set_cookie(f"visited", "yes", expires=expires)
 
         if qr_id and qr_id != "":
             qr_count = increment_qr_counter(qr_id)
