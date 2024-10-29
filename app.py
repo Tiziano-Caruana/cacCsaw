@@ -75,8 +75,11 @@ def index():
         conn.close()
     else:
         if not website_visited:
-            global_count = increment_global_counter()
+            increment_global_counter()
             response.set_cookie(f"visited", "yes", expires=expires)
+            
+        cursor.execute("SELECT count FROM global_count WHERE id = 1")
+        global_count = cursor.fetchone()[0]
 
         if qr_id and qr_id != "":
             qr_count = increment_qr_counter(qr_id)
