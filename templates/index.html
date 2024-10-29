@@ -101,8 +101,13 @@
     <div class="counter-container">
         <h1 class="emilys-candy-regular">Potenziali vittime:</h1>
         
-        <div class="counter emilys-candy-regular" id="visit-counter">{{ count }}</div>
-        
+        <div class="counter emilys-candy-regular" id="visit-counter">{{ global_count }}</div>
+
+        {% if qr_count > 0 %}
+        <h2 class="emilys-candy-regular mt-4">Da questo QR:</h2>
+        <div class="counter emilys-candy-regular" id="qr-counter">{{ qr_count }}</div>
+        {% endif %}
+
         <div class="gif-container">
             <img src="https://media.giphy.com/media/jAe22Ec5iICCk/giphy.gif" class="gif1" alt="Sleeping on keyboard">
             <img src="https://media.giphy.com/media/uaJLuMokII24w/giphy.gif" class="gif2" alt="One Piece laugh meme">
