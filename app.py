@@ -8,8 +8,9 @@ DB_PATH = "counter.db"
 def init_db():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
+    
     cursor.execute(
-        "CREATE TABLE IF NOT EXISTS global_count (id INTEGER PRIMARY KEY, count INTEGER)"
+        "CREATE TABLE IF NOT EXISTS global_count (id INTEGER PRIMARY KEY, count INTEGER, access_time TIMESTAMP)"
     )
     cursor.execute("INSERT OR IGNORE INTO global_count (id, count) VALUES (1, 0)")
     
@@ -21,6 +22,18 @@ def init_db():
         )
         """
     )
+    
+    cursor.execute(
+        """
+        CREATE TABLE IF NOT EXISTS visit_log (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            qr_id TEXT,
+            visit_type TEXT,
+            timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )
+        """
+    )
+    
     conn.commit()
     conn.close()
 
@@ -32,6 +45,13 @@ def increment_global_counter():
     conn.commit()
     cursor.execute("SELECT count FROM global_count WHERE id = 1")
     global_count = cursor.fetchone()[0]
+    
+    cursor.execute(
+        "INSERT INTO visit_log (qr_id, visit_type) VALUES (?, ?)",
+        (None, "global")
+    )
+    
+    conn.commit()
     conn.close()
     return global_count
 
@@ -50,6 +70,11 @@ def increment_qr_counter(qr_id):
         cursor.execute("INSERT INTO qr_counter (qr_id, count) VALUES (?, 1)", (qr_id,))
         qr_count = 1
 
+    cursor.execute(
+        "INSERT INTO visit_log (qr_id, visit_type) VALUES (?, ?)",
+        (qr_id, "qr_specific")
+    )
+
     conn.commit()
     conn.close()
     return qr_count
@@ -67,27 +92,24 @@ def index():
         global_count = cursor.fetchone()[0]
         
         if qr_id and qr_id != "":
-            try:
-                cursor.execute("SELECT count FROM qr_counter WHERE qr_id = ?", (qr_id,))
-                qr_count = cursor.fetchone()[0]
-            except:
-                qr_count = 0
+            cursor.execute("SELECT count FROM qr_counter WHERE qr_id = ?", (qr_id,))
+            qr_count_result = cursor.fetchone()
+            qr_count = qr_count_result[0] if qr_count_result else 0
         else:
             qr_count = 0
 
         conn.close()
     else:
-        cursor.execute("SELECT count FROM global_count WHERE id = 1")
-        global_count = cursor.fetchone()[0]
+        global_count = increment_global_counter() if not website_visited else cursor.execute("SELECT count FROM global_count WHERE id = 1").fetchone()[0]
 
         if qr_id and qr_id != "":
             qr_count = increment_qr_counter(qr_id)
             response = make_response(render_template("index.html", global_count=global_count, qr_count=qr_count))
         else:
-            response = make_response(render_template("index.html", global_count=global_count, qr_count=0))
+            qr_count = 0
+            response = make_response(render_template("index.html", global_count=global_count, qr_count=qr_count))
 
         if not website_visited:
-            increment_global_counter()
             expires = datetime.datetime.now() + datetime.timedelta(days=20)
             response.set_cookie(f"visited", "yes", expires=expires)
 
