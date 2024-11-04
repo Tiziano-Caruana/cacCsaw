@@ -90,6 +90,38 @@
         p {
             font-family: Arial, sans-serif;
         }
+
+        .scroll-down-arrow {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 1000;
+            width: 70px;
+            height: 70px;
+            background-color: #ffffff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-down-arrow img {
+            width: 40px;
+            height: auto;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
     </style>
 </head>
 <body>
@@ -99,7 +131,7 @@
 
 <div class="container">
     <div class="counter-container">
-        <h1 class="emilys-candy-regular">Potenziali vittime:</h1>
+        <h1 class="emilys-candy-regular">Potenziali vittime </br> di cyber-attacchi:</h1>
         
         <div class="counter emilys-candy-regular" id="visit-counter">{{ global_count }}</div>
 
@@ -114,6 +146,10 @@
             <img src="https://media.giphy.com/media/1xo9EaeRENVbs6jn0a/giphy.gif" class="gif3" alt="Mad Manolas">
             <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZWhtb3p3bm9rcnAxdWlnMXB0MDJvbmxrYXRodHcwdGxobDJ3dHQzcCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/11mwI67GLeMvgA/giphy.gif" class="gif4" alt="El risitas">
         </div>
+    </div>
+
+    <div class="scroll-down-arrow">
+        <img src="https://img.icons8.com/ios-filled/50/000000/down--v1.png" alt="Scorri giù">
     </div>
 
     <div class="container info-section mt-5">
@@ -162,6 +198,13 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(function () {
+            document.querySelector('.scroll-down-arrow').style.display = 'none';
+        }, 7000);
+    });
+</script>
 
 </body>
 </html>
